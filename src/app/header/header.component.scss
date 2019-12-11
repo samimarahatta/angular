@@ -1,0 +1,17 @@
+ul.menu{
+    li{
+        display: inline-block;
+        a{
+            padding: 10px 15px;
+            background-color: #008dff;
+            margin: 10px;
+            color: #fff;
+            border-radius: 4px;
+            display: block;
+            &:hover{
+                text-decoration: none;
+                background-color: #2d3051;
+            }
+        }
+    }
+}
