@@ -1,11 +1,23 @@
 <section class="add-user">
-        <form action="" [formGroup]="profileForm"  (ngSubmit)="onSubmit()"c>
-            <input type="text" placeholder="First Name"  formControlName="firstName">
+        <form action="" [formGroup]="profileForm"  (ngSubmit)="onSubmit()">
+            <input type="text" placeholder="First Name*"  formControlName="firstName" minlength="4">
+            <span class="error"*ngIf="profileForm.get('firstName').touched && profileForm.get('firstName').hasError('required')">first name is required</span>
+            <span class="error" *ngIf="profileForm.get('firstName').hasError('minlength')">
+                Name must be at least 4 characters long.
+            </span>
             <input type="text" placeholder="Last Name"  formControlName="lastName">
             <input type="text" placeholder="Degisnation" formControlName="degisnation">
+            <input type="text" placeholder="Phone Number" formControlName="phoneNumber">
+            <span class="error"*ngIf="profileForm.get('phoneNumber').touched && profileForm.get('phoneNumber').hasError('pattern')">Phone no. is invalid</span>
             <input type="text" placeholder="age" formControlName="age">
+            <span class="error"*ngIf="profileForm.get('age').touched && profileForm.get('age').hasError('pattern')">Should be 18 or above </span>
             <input type="text" placeholder="gender" formControlName="gender">
-            <input type="text" placeholder="Email Address" formControlName="email">
-            <button  type="submit" value="submit">click</button>
+            <input type="text" placeholder="Email Address*" formControlName="email">
+            <span class="error"*ngIf="profileForm.get('email').touched && profileForm.get('email').hasError('required')">Email Address is required</span>
+            <span class="error"*ngIf="profileForm.get('email').hasError('email')">Email Address is invalid</span>
+            <button  type="submit"  [disabled]="profileForm.invalid">submit</button>
+            <p>
+                Form Status: {{ profileForm.status }}
+            </p>
         </form>
 </section>

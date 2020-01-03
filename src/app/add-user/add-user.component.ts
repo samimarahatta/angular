@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Validators } from '@angular/forms';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -7,12 +8,13 @@ import { FormBuilder } from '@angular/forms';
 })
 export class AddUserComponent implements OnInit {
   profileForm = this.fb.group({
-    firstName: [''],
+    firstName: ['', Validators.required],
     lastName: [''],
     degisnation: [''],
-    age: [''],
+    phoneNumber:['',[Validators.pattern('^[9][8][0-9]{8}$')]],
+    age: ['',[Validators.pattern('^1[89]|[2-9][0-9]$')]],
     gender:[''],
-    email:['']
+    email:['', [Validators.required, Validators.email]]
   });
 
   constructor(private fb: FormBuilder) { }
